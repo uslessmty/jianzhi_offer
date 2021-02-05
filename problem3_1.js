@@ -9,5 +9,27 @@ const f0 = function(arr){
       hash[val] = 1;
     }
   }
+  return -1;
+};
+
+const f1 = function(arr) {
+  for (let i = 0; i < arr.length; i++)
+  {
+    if (arr[i] !== i)
+    {
+      if (arr[arr[i]] === arr[i])
+      {
+        return arr[i];
+      }else 
+      {
+        let tmp = arr[i];
+        arr[i] = arr[arr[i]];
+        arr[arr[i]] = arr[i];
+      }
+    }
+  }
+  return -1;
 }
-console.log(f0([3,2,3,4,5]));
+
+
+console.log(f1([0, 2, 2, 3, 1]));
