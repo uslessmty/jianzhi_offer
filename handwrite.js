@@ -95,3 +95,21 @@ function myintanceof(obj, fn) {
   }
   return false;
 }
+//手写Promise.all
+Promise.myAll = function(args) {
+  return new Promise(function(resolve, reject) {
+    let len = args.length;
+    let res = [];
+    let count = 0;
+    if (len === 0) resolve(res);
+    for (let [i, p] of args.entries()) {
+      p.then(function(data) {
+        res[i] = data;
+        count++;
+        if (count === len) resolve(res);
+      }, function(err) {
+        reject(err);
+      })
+    }
+  });
+}
